@@ -1,7 +1,7 @@
-name: allChannels.json Updater
+name: allChannels Updater
 on:
  schedule:
-   - cron: "00 10  * * *"
+   - cron: "0 0 */5 * *"
  workflow_dispatch:
   inputs:
 defaults:
@@ -11,39 +11,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Tata Play IPTV allChannels.json Updater
+    - name: Tata Sky IPTV allChannels.json Updater
       run: |
             git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git clone "https://${{ secrets.GIT_TOKEN }}@github.com/baadshah0786/allChannels-updater"
+            git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git clone "https://${{ secrets.GIT_TOKEN }}@github.com/baadshah0786/allChannels-updater.git"
             cd allChannels-updater/code_samples
             python3 allChannels.py > /dev/null 2>&1
-            # cat allChannels.json | bash <(curl -s 'https://gist.githubusercontent.com/Mobassar4u/6d28dba7588f2e17e376d8c75dea580e/raw/bash-json-parser') | grep 'channel_name' | sed 's/.*channel_name\=//g' | sort > allChannelsName
+            # cat allChannels.json | bash <(curl -s 'https://raw.githubusercontent.com/fkalis/bash-json-parser/master/bash-json-parser') | grep 'channel_name' | sed 's/.*channel_name\=//g' | sort > allChannelsName
             sed -i 's/null/\"null\"/g' allChannels.json
             channels=$(cat allChannels.json| grep -o 'channel_genre' | wc -l)
             cd ..
             git add .
-            git commit --author="github-actions[bot] <github-actions[bot]@users.noreply.github.com>" -m "Bot: Updated allChannels.json of $channels channels"
-            git push
-            git clone "https://${{ secrets.GIT_TOKEN }}@github.com/Mobassar4u/Tata-Play-IPTV-Workflow-1"
-            cd Tata-Play-IPTV-Workflow-1/code_samples
-            python3 allChannels.py > /dev/null 2>&1
-            # cat allChannels.json | bash <(curl -s 'https://gist.githubusercontent.com/Mobassar4u/6d28dba7588f2e17e376d8c75dea580e/raw/bash-json-parser') | grep 'channel_name' | sed 's/.*channel_name\=//g' | sort > allChannelsName
-            sed -i 's/null/\"null\"/g' allChannels.json
-            channels=$(cat allChannels.json| grep -o 'channel_genre' | wc -l)
-            cd ..
-            git add .
-            git commit --author="github-actions[bot] <github-actions[bot]@users.noreply.github.com>" -m "Bot: Updated allChannels.json of $channels channels"
-            git push
-            git clone "https://${{ secrets.GIT_TOKEN }}@github.com/Mobassar4u/Tata-Play-IPTV-Workflow-2"
-            cd Tata-Play-IPTV-Workflow-2/code_samples
-            python3 allChannels.py > /dev/null 2>&1
-            # cat allChannels.json | bash <(curl -s 'https://gist.githubusercontent.com/Mobassar4u/6d28dba7588f2e17e376d8c75dea580e/raw/bash-json-parser') | grep 'channel_name' | sed 's/.*channel_name\=//g' | sort > allChannelsName
-            sed -i 's/null/\"null\"/g' allChannels.json
-            channels=$(cat allChannels.json| grep -o 'channel_genre' | wc -l)
-            cd ..
-            git add .
-            git commit --author="github-actions[bot] <github-actions[bot]@users.noreply.github.com>" -m "Bot: Updated allChannels.json of $channels channels"
-            git push -f
+            if [[ -z "$(git log --oneline | head -n1| grep 'Bot: Updated allChannels.json')" ]]; then
+              git commit --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" -m "Bot: Updated allChannels.json of $channels channels"
+              git push
+            else
+               git commit --amend --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" -m "Bot: Updated allChannels.json of $channels channels"
+               git push -f
             fi
             exit
