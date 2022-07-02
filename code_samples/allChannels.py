@@ -9,7 +9,7 @@ channel_list = []
 
 
 def getChannelInfo(channelId):
-    url = "{}content-detail/pub/api/v2/channels/{}".format(API_BASE_URL, channelId)
+    url = "{}content-detail/pub/api/v2/channel/{}".format(API_BASE_URL, channelId)
     x = requests.get(url)
     meta_data= x.json()['data']['meta']
     channel_meta = x.json()['data']['channelMeta']
