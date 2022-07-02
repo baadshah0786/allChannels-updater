@@ -9,7 +9,7 @@ channel_list = []
 
 
 def getChannelInfo(channelId):
-    url = "{}content-detail/pub/api/v2/channel/{}".format(API_BASE_URL, channelId)
+    url = "{}content-detail/pub/api/v2/channels/{}".format(API_BASE_URL, channelId)
     x = requests.get(url)
     meta_data= x.json()['data']['meta']
     channel_meta = x.json()['data']['channelMeta']
@@ -42,7 +42,7 @@ def processChnuks(channel_lists):
 
 def getAllChannels():
     ts = []
-    url = API_BASE_URL + "content-detail/pub/api/v1/channels?limit=999"
+    url = API_BASE_URL + "content-detail/pub/api/v1/channel?limit=999"
     x = requests.get(url)
     channel_list = x.json()['data']['list']
     print("Total Channels fetched:", len(channel_list))
