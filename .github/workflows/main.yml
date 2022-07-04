@@ -1,4 +1,4 @@
-name: allChannels Updater
+name: allChannels
 on:
  schedule:
    - cron: "0 0 */5 * *"
