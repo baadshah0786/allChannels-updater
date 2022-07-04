@@ -1,4 +1,4 @@
-### Script to get all channels from Tata Play IPTV
+### Script to get all channels from tata sky
 import threading
 import requests
 import json as json
@@ -42,7 +42,7 @@ def processChnuks(channel_lists):
 
 def getAllChannels():
     ts = []
-    url = API_BASE_URL + "content-detail/pub/api/v1/channels?limit=999"
+    url = API_BASE_URL + "content-detail/pub/api/v1/channels?limit=1000"
     x = requests.get(url)
     channel_list = x.json()['data']['list']
     print("Total Channels fetched:", len(channel_list))
