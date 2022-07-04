@@ -3,7 +3,7 @@ import threading
 import requests
 import json as json
 
-API_BASE_URL = "https://tm.tapi.videoready.tv/"
+API_BASE_URL = "https://kong-tatasky.videoready.tv/"
 
 channel_list = []
 
