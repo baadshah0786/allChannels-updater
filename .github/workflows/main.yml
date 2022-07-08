@@ -15,7 +15,7 @@ jobs:
       run: |
             git config --global user.name "github-actions[bot]"
             git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git clone "https://${{ secrets.GIT_TOKEN }}@gist.githubusercontent.com/baadshah0786/c019970a84f4efc82513b5b85278defe/raw/allChannels.py"
+            git clone "https://${{ secrets.GIT_TOKEN }}@github.com/baadshah0786/allChannels-updater.git"
             cd allChannels-updater/code_samples
             python3 allChannels.py > /dev/null 2>&1
             # cat allChannels.json | bash <(curl -s 'https://gist.githubusercontent.com/Mobassar4u/6d28dba7588f2e17e376d8c75dea580e/raw/bash-json-parser') | grep 'channel_name' | sed 's/.*channel_name\=//g' | sort > allChannelsName
