@@ -20,7 +20,7 @@ jobs:
             python3.8 allChannels.py > /dev/null 2>&1
             # cat allChannels.json | bash <(curl -s 'https://gist.githubusercontent.com/Mobassar4u/6d28dba7588f2e17e376d8c75dea580e/raw/bash-json-parser') | grep 'channel_name' | sed 's/.*channel_name\=//g' | sort > allChannelsName
             sed -i 's/null/\"null\"/g' allChannels.json
-            channels=$(cat allChannels.json| grep -2 'channel_genre' | wc -l)
+            channels=$(cat allChannels.json| grep -0 'channel_genre' | wc -l)
             cd ..
             git add .
             git commit --author="github-actions[bot] <github-actions[bot]@users.noreply.github.com>" -m "Bot: Updated allChannels.json of $channels channels"
