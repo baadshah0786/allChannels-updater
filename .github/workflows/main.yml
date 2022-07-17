@@ -19,7 +19,7 @@ jobs:
             cd allChannels-updater/code_samples
             python3.8 allChannels.py > /dev/null 2>&1
             # cat allChannel.json | bash <(curl -s 'https://gist.githubusercontent.com/Mobassar4u/6d28dba7588f2e17e376d8c75dea580e/raw/bash-json-parser') | grep 'channel_name' | sed 's/.*channel_name\=//g' | sort > allChannelsName
-            sed -i 's/null/\"null\"/g' allChannels.json
+            sed -i 's/null/\"null\"/g' allChannel.json
             channels=$(cat allChannel.json| grep -0 'channel_genre' | wc -l)
             cd ..
             git add .
